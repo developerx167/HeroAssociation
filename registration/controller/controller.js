@@ -1,7 +1,7 @@
 const Validation = require('@heroassociation/validation')
 const ErrorHandler = require('@developerx167/errorhandler')
 const UserModel = require('@heroassociation/usermodel')
-
+const bcryptjs = require('bcryptjs')
 module.exports = {
     // routes 
     registrationRouteController : async (req,res,next) => {
@@ -14,8 +14,10 @@ module.exports = {
                 const error = new ErrorHandler('Invalid input',400,Object.keys(Object.fromEntries(notValid)))
                 return next(error)
             }
-            // insert user 
-            await UserModel.create(validate)
+            // create hash 
+            const hash = await bcryptjs.hash(req.body.password,10)
+            // insert user
+            await UserModel.create({...validate, password : hash, expiresAt : new Date(new Date().setHours(new Date().getHours() + 1))})
             res.status(201).json({success : 1, message : "registration successful"})
         }
         catch (error) {

@@ -24,7 +24,7 @@ services:
     command: redis-server /redisConf/redis.conf
 
   
-  # registration microservice config
+  # registration service config
   registration:
     build:
       context: ./registration
@@ -39,6 +39,23 @@ services:
     depends_on:
       - mongo
 
+  # login service config
+  login : 
+    build:
+      context: ./login
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./login:/app
+    environment:
+      - PORT=80
+      - MONGODB_URL=mongodb://readwriteuser:mypassword@mongo:27017/myproject
+      - NODE_ENV=development
+      - REDIS_URL=redis://default:mypassword@redis:6379/0
+      - SECRET=hjsdhjgdhjg@#@^%&^&jksdhjkh#@@#%fgsfd
+    depends_on:
+      - mongo
+      - redis
 
   # nginx config
   nginx:
@@ -49,6 +66,7 @@ services:
       - 3500:80
     depends_on:
       - registration
+      - login
 
 
 

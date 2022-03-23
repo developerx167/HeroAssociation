@@ -13,7 +13,7 @@ const addressSchema = new mongoose.Schema({
 const schema = new mongoose.Schema({
     firstName : { type:String, minlength : 2 , maxlength : 20, lowercase : true},
     lastName : { type:String, minlength : 2 , maxlength : 20, lowercase : true},
-    password : { type:String, required : true, lowercase : true},
+    password : { type:String, required : true},
     email : { type:String, minlength : 5, maxlength : 100, unique : true, lowercase : true},
     expiresAt : {type : Date},
     username : {type : String, minlength : 5, maxlength : 20, unique : true, lowercase : true},

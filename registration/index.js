@@ -13,6 +13,7 @@ app.use(express.json())
 app.use('/registration',router)
 app.all('*',routetomain)
 
+
 //handle errors
 app.use(expressErrorHandler)
 
