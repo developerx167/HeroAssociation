@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  # mongo db config with separate read readwrite user
+  # mongo db config with separate read and readwrite user
   mongo:
     image: mongo:5.0.6
     environment:
