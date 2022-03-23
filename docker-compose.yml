@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  # mongo db config with separate read readwrite user
+  mongo:
+    image: mongo:5.0.6
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=developerx167
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+      - MONGO_INITDB_DATABASE=myproject
+      - MONGO_READ_USER=readuser
+      - MONGO_READ_PASSWORD=mypassword
+      - MONGO_READ_WRITE_USER=readwriteuser
+      - MONGO_READ_WRITE_PASSWORD=mypassword 
+    volumes:
+      - mongodbdata=data/db
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  # redis config with requirepass
+  redis:
+    image: redis:6.2
+    volumes:
+      - ./redisconf:/redisConf
+      - redisdata:/data/db
+    command: redis-server /redisConf/redis.conf
+
+  
+  # registration microservice config
+  registration:
+    build:
+      context: ./registration
+      args:
+        - NODE_ENV=development
+    environment:
+      - PORT=80
+      - MONGODB_URL=mongodb://readwriteuser:mypassword@mongo:27017/myproject
+      - NODE_ENV=development
+    volumes:
+      - ./registration:/app # comment out on prod
+    depends_on:
+      - mongo
+
+
+  # nginx config
+  nginx:
+    image: nginx:1.20.2
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+    ports:
+      - 3500:80
+    depends_on:
+      - registration
+
+
+
+volumes:
+  mongodbdata :
+  redisdata :
+  registrationlogs :

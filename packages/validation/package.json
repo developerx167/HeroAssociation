@@ -1,0 +1,20 @@
+{
+  "name": "@heroassociation/validation",
+  "version": "1.0.3",
+  "description": "validation password name email etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "validation",
+    "password",
+    "name",
+    "email"
+  ],
+  "author": "developerx167",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.7.0"
+  }
+}

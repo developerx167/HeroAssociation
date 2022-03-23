@@ -1,0 +1,14 @@
+{
+  "name": "@heroassociation/usermodel",
+  "version": "1.0.6",
+  "description": "user model mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "developerx167",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.2.8"
+  }
+}

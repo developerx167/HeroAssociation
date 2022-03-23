@@ -1,0 +1,29 @@
+{
+  "name": "registration",
+  "version": "1.0.0",
+  "description": "registration micro-service node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then node index.js; else nodemon index.js; fi"
+  },
+  "keywords": [
+    "registration",
+    "nodejs"
+  ],
+  "author": "developerx167",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "@developerx167/errorhandler": "^1.0.0",
+    "@developerx167/expresserrorhandler": "^1.0.4",
+    "@developerx167/mongodbconn": "^1.0.4",
+    "@heroassociation/routetomain": "^1.0.0",
+    "@heroassociation/usermodel": "^1.0.6",
+    "@heroassociation/validation": "^1.0.3",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7"
+  }
+}

@@ -1,0 +1,7 @@
+const readUser = _getEnv('MONGO_READ_USER')
+const readPassword = _getEnv('MONGO_READ_PASSWORD')
+const readWriteUser = _getEnv('MONGO_READ_WRITE_USER')
+const readWritePassword = _getEnv('MONGO_READ_WRITE_PASSWORD')
+const dbname = _getEnv('MONGO_INITDB_DATABASE')
+db.createUser({user : readUser, pwd : readPassword, roles : [{role : "read", db : dbname}]})
+db.createUser({user : readWriteUser, pwd : readWritePassword, roles : [{role : "readWrite", db : dbname}]})
