@@ -1,7 +1,3 @@
-const session = require('express-session')
-const RedisStore = require('connect-redis')(session)
-const redisClient = require('@developerx167/redisconn')
-
 const ErrorHandler = require('@developerx167/errorhandler')
 const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs')
@@ -31,8 +27,11 @@ module.exports ={
             // if match true 
             if(match){
                 req.session.ud = {...result, password : undefined}
-                const ck = jsonwebtoken.sign(String(result._id),process.env.SECRET)
-                res.cookie('dl',ck,{httpOnly : true, secure : true, expires : new Date( new Date().setMonth( new Date().getMonth() + 1))})
+                // if remember me is true 
+                if(req.body.rememberMe){
+                    const ck = jsonwebtoken.sign(String(result._id),process.env.SECRET)
+                    res.cookie('dl',ck,{httpOnly : true, secure : true, expires : new Date( new Date().setMonth( new Date().getMonth() + 1))})
+                }
                 return res.redirect('/')
             }
             // if not match 
@@ -43,18 +42,5 @@ module.exports ={
             next(error)
         }
     },
-
-    // express session handler
-    expressSessionHandler : {
-        secret : process.env.SECRET,
-        saveUninitialized : false,
-        resave : false,
-        proxy : true,
-        cookie : {
-            httpOnly : true,
-            secure : process.env.NODE_ENV == 'development'? false : true
-        },
-        store : new RedisStore({client : redisClient})
-    }
 
 }

@@ -1,16 +1,15 @@
 {
-  "name": "login",
+  "name": "post",
   "version": "1.0.0",
-  "description": "login microsrvice docker",
+  "description": "post microservice",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " if [ \"$NODE_ENV\" = \"development\" ]; then nodemon index.js; else node index.js; fi"
+    "start": "if [ \"$NODE_ENV\" = \"development\" ]; then nodemon index.js; else node index.js; fi"
   },
   "keywords": [
-    "login",
-    "api",
-    "microsevice"
+    "post",
+    "microservice"
   ],
   "author": "developerx167",
   "license": "ISC",
@@ -20,17 +19,12 @@
   "dependencies": {
     "@developerx167/errorhandler": "^1.0.0",
     "@developerx167/expresserrorhandler": "^1.0.4",
-    "@developerx167/logger": "^1.0.1",
-    "@developerx167/mongodbconn": "^1.0.8",
+    "@developerx167/mongodbconn": "^1.0.4",
     "@developerx167/redisconn": "^1.0.4",
     "@heroassociation/expresssessionhandler": "^1.0.0",
+    "@heroassociation/postmodel": "^1.0.0",
     "@heroassociation/routetomain": "^1.0.0",
-    "bcryptjs": "^2.4.3",
-    "connect-redis": "^6.1.3",
     "express": "^4.17.3",
-    "express-session": "^1.17.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.8",
-    "validator": "^13.7.0"
+    "express-session": "^1.17.2"
   }
 }

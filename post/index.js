@@ -1,24 +1,22 @@
 const express = require('express')
-const router = require('./router/router')
-const routetomain = require('@heroassociation/routetomain')
 const app = express()
+const session = require('express-session')
 const { expressSessionHandler } = require('@heroassociation/expresssessionhandler')
 const { expressErrorHandler } = require('@developerx167/expresserrorhandler')
-const session = require('express-session')
+const routeToMain = require('@heroassociation/routetomain')
+const router = require('./router/router')
 
-
-// establish connection redis / mongo 
-require('@developerx167/redisconn')
+// establish mongodb and redis connection
 require('@developerx167/mongodbconn')
+require('@developerx167/redisconn')
 
-// required middlewares 
-app.use(express.json())
+// handle session and other middlewares
 app.use(session(expressSessionHandler))
-
+app.use(express.json())
 
 // routes 
-app.use('/login',router)
-app.all('*',routetomain)
+app.use('/post',router)
+app.all('*',routeToMain)
 
 // handle errors
 app.use(expressErrorHandler)

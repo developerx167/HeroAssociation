@@ -1,0 +1,22 @@
+{
+  "name": "@heroassociation/expresssessionhandler",
+  "version": "1.0.0",
+  "description": "express session controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "session",
+    "handler",
+    "controller"
+  ],
+  "author": "developerx167",
+  "license": "ISC",
+  "dependencies": {
+    "@developerx167/redisconn": "^1.0.0",
+    "connect-redis": "^6.1.3",
+    "express-session": "^1.17.2"
+  }
+}
