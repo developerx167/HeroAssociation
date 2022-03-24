@@ -1,4 +1,4 @@
-version: '3.8'
+version : '3.8'
 services:
   # mongo db config with separate read and readwrite user
   mongo:
@@ -75,6 +75,23 @@ services:
       - mongo
       - redis
 
+  # post service config
+  comment :
+    build:
+      context: ./comment
+      args:
+        - NODE_ENV=development
+    environment:
+      - PORT=80
+      - MONGODB_URL=mongodb://readwriteuser:mypassword@mongo:27017/myproject
+      - NODE_ENV=development
+      - REDIS_URL=redis://default:mypassword@redis:6379/0
+      - SECRET=hjsdhjgdhjg@#@^%&^&jksdhjkh#@@#%fgsfd
+    volumes:
+      - ./comment:/app
+    depends_on:
+      - mongo
+      - redis
 
   # nginx config
   nginx:
@@ -87,7 +104,7 @@ services:
       - registration
       - login
       - post
-
+      - comment
 
 
 volumes:

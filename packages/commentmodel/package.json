@@ -1,0 +1,19 @@
+{
+  "name": "@heroassociation/commentmodel",
+  "version": "1.0.1",
+  "description": "comment model mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "comment",
+    "model",
+    "mongoose"
+  ],
+  "author": "developerx167",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.2.8"
+  }
+}

@@ -10,6 +10,10 @@ module.exports = {
         try {
             // if session available  else redirect to login page
             if(req.session.ud){
+                if(req.body.post.length < 10 || req.body.post.length > 1000 || req.body.title.length < 5 || req.body.title.length > 50){
+                    const error = new ErrorHanlder('Invalid entry', 500)
+                    return next(error)
+                }
                 const result = await PostModel.create({title : req.body.title, post : req.body.post, user : req.session.ud._id})
                 const update = await usersCol.findOneAndUpdate({_id : mongoose.Types.ObjectId(req.session.ud._id)},{$push : { posts : result._id}})
                 // if not update 
