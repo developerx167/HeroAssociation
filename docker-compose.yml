@@ -93,6 +93,25 @@ services:
       - mongo
       - redis
 
+  # post service config
+  reply :
+    build:
+      context: ./reply
+      args:
+        - NODE_ENV=development
+    environment:
+      - PORT=80
+      - MONGODB_URL=mongodb://readwriteuser:mypassword@mongo:27017/myproject
+      - NODE_ENV=development
+      - REDIS_URL=redis://default:mypassword@redis:6379/0
+      - SECRET=hjsdhjgdhjg@#@^%&^&jksdhjkh#@@#%fgsfd
+    volumes:
+      - ./reply:/app
+    depends_on:
+      - mongo
+      - redis
+
+
   # nginx config
   nginx:
     image: nginx:1.20.2
@@ -105,6 +124,7 @@ services:
       - login
       - post
       - comment
+      - reply
 
 
 volumes:

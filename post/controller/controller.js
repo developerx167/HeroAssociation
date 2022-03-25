@@ -10,8 +10,12 @@ module.exports = {
         try {
             // if session available  else redirect to login page
             if(req.session.ud){
+                if(!req.body.post){
+                    const error = new ErrorHanlder('Invalid entry', 500, ['post'])
+                    return next(error)
+                }
                 if(req.body.post.length < 10 || req.body.post.length > 1000 || req.body.title.length < 5 || req.body.title.length > 50){
-                    const error = new ErrorHanlder('Invalid entry', 500)
+                    const error = new ErrorHanlder('Invalid entry', 500, ['post'])
                     return next(error)
                 }
                 const result = await PostModel.create({title : req.body.title, post : req.body.post, user : req.session.ud._id})
@@ -21,7 +25,7 @@ module.exports = {
                     const error = new ErrorHanlder('Unknown error occurred',500)
                     return next(error) 
                 }
-                return res.json({success : 1, message : "post successful"})
+                return res.status(201).json({success : 1, message : "post successful"})
             }
             else{
                 return res.redirect('/login')

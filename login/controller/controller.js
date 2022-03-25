@@ -9,6 +9,12 @@ module.exports ={
     // routes 
     loginRouterController : async (req,res,next) =>{
         try {
+
+            if(!req.body.username || !req.body.password){
+                const error = new ErrorHandler('Invalid input', 400, ['username', 'password'])
+                return next(error)                
+            }
+
             var result
             // check if email 
             if(validator.isEmail(req.body.username)){

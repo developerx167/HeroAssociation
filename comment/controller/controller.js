@@ -6,10 +6,14 @@ module.exports = {
     commentPostHandler : async (req,res,next)=>{
         try {
             if(req.session.ud){
-
+                
+                if(!req.body.comment || !mongoose.Types.ObjectId.isValid(req.body.postid)){
+                    const error = new ErrorHandler('Invalid entry comment',500,['comment'])
+                    return next(error)
+                }
                 // check length of comment 
                 if(req.body.comment.length < 1 || req.body.comment.length > 50){
-                    const error = new ErrorHandler('Invalid entry comment',500)
+                    const error = new ErrorHandler('Invalid entry comment',500, ['comment'])
                     return next(error)
                 }
 
@@ -29,8 +33,8 @@ module.exports = {
                 }
 
                 const result = await CommentModel.create({user : mongoose.Types.ObjectId(req.session.ud._id), comment : req.body.comment})
-                const postid = await PostModel.findByIdAndUpdate({_id : req.body.postid},{$push : {commentid : result._id}})
-                return res.json({success : 1, message : "comment successful"})
+                await PostModel.findByIdAndUpdate({_id : req.body.postid},{$push : {commentid : result._id}})
+                return res.status(201).json({success : 1, message : "comment successful"})
             }
             else{
                 return res.redirect('/login')

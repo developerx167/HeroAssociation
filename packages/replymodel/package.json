@@ -1,15 +1,14 @@
 {
-  "name": "@heroassociation/commentmodel",
-  "version": "1.0.2",
-  "description": "comment model mongoose",
+  "name": "@heroassociation/replymodel",
+  "version": "1.0.1",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "comment",
-    "model",
-    "mongoose"
+    "reply",
+    "microservice"
   ],
   "author": "developerx167",
   "license": "ISC",
