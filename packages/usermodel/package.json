@@ -1,6 +1,6 @@
 {
   "name": "@heroassociation/usermodel",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "user model mongoose",
   "main": "index.js",
   "scripts": {

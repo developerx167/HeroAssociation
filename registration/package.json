@@ -21,7 +21,7 @@
     "@developerx167/expresserrorhandler": "^1.0.4",
     "@developerx167/mongodbconn": "^1.0.4",
     "@heroassociation/routetomain": "^1.0.0",
-    "@heroassociation/usermodel": "^1.0.7",
+    "@heroassociation/usermodel": "^1.0.8",
     "@heroassociation/validation": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.3",

@@ -21,7 +21,8 @@ const schema = new mongoose.Schema({
     dob : {type : Date},
     address : { type : addressSchema },
     // use await UserModel.findByIdAndUpdate({_id : id},{$push : { posts : id}})
-    posts : {type : mongoose.Schema.Types.ObjectId, ref : 'posts', default : undefined}
+    posts : {type : mongoose.Schema.Types.ObjectId, ref : 'posts', default : undefined},
+    active : { type : Boolean, default : false}
 }, {timestamps : true})
 
 // time to live, if not validate then expire

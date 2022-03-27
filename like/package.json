@@ -1,30 +1,31 @@
 {
-  "name": "reply",
+  "name": "like",
   "version": "1.0.0",
-  "description": "reply microservice",
+  "description": "like microservice",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if [ \"$NODE_ENV\" = \"production\" ]; then node index.js; else nodemon index.js; fi"
   },
   "keywords": [
-    "reply",
-    "microservice"
+    "like",
+    "service"
   ],
   "author": "developerx167",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
   "dependencies": {
     "@developerx167/errorhandler": "^1.0.0",
     "@developerx167/expresserrorhandler": "^1.0.4",
     "@developerx167/mongodbconn": "^1.0.8",
     "@heroassociation/commentmodel": "^1.0.3",
     "@heroassociation/expresssessionhandler": "^1.0.0",
+    "@heroassociation/postmodel": "^1.0.1",
     "@heroassociation/replymodel": "^1.0.2",
     "@heroassociation/routetomain": "^1.0.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
